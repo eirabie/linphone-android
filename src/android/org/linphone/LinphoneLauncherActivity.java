@@ -40,7 +40,7 @@ import android.os.Handler;
 public class LinphoneLauncherActivity extends Activity {
 
 	private Handler mHandler;
-	private ServiceWaitThread mThread;
+	private ServiceWaitThread mServiceThread;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +54,15 @@ public class LinphoneLauncherActivity extends Activity {
 
 		mHandler = new Handler();
 
+
+
 		if (LinphoneService.isReady()) {
 			onServiceReady();
 		} else {
 			// start linphone as background
 			startService(new Intent(ACTION_MAIN).setClass(this, LinphoneService.class));
-			mThread = new ServiceWaitThread();
-			mThread.start();
+			mServiceThread = new ServiceWaitThread();
+			mServiceThread.start();
 		}
 	}
 
@@ -82,11 +84,29 @@ public class LinphoneLauncherActivity extends Activity {
 		mHandler.postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				startActivity(new Intent().setClass(LinphoneLauncherActivity.this, classToStart).setData(getIntent().getData()));
+				Intent newIntent = new Intent(LinphoneLauncherActivity.this, classToStart);
+				Intent intent = getIntent();
+                String msgShared = null;
+				if (intent != null) {
+					String action = intent.getAction();
+					String type = intent.getType();
+					newIntent.setData(intent.getData());
+					if (Intent.ACTION_SEND.equals(action) && type != null) {
+						if ("text/plain".equals(type) && intent.getStringExtra(Intent.EXTRA_TEXT) != null) {
+                            msgShared = intent.getStringExtra(Intent.EXTRA_TEXT);
+							newIntent.putExtra("msgShared", msgShared);
+						}
+					}
+				}
+				startActivity(newIntent);
+                if (classToStart == LinphoneActivity.class && LinphoneActivity.isInstanciated() && msgShared != null) {
+                    LinphoneActivity.instance().displayChat(null, msgShared);
+                }
 				finish();
 			}
 		}, 1000);
 	}
+
 
 	private class ServiceWaitThread extends Thread {
 		public void run() {
@@ -103,7 +123,7 @@ public class LinphoneLauncherActivity extends Activity {
 					onServiceReady();
 				}
 			});
-			mThread = null;
+			mServiceThread = null;
 		}
 	}
 }
