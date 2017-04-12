@@ -2,19 +2,19 @@
 <resources>
 
     <!-- Custom -->
-    <string name="app_name">Linphone</string>
-    <string name="service_name">Linphone Service</string>
-    <string name="addressbook_label">Linphone</string>
-    <string name="notification_title">Linphone</string>
+    <string name="app_name">TRSMiCloud</string>
+    <string name="service_name">TRSMiCloud Service</string>
+    <string name="addressbook_label">TRSMiCloud</string>
+    <string name="notification_title">TRSMiCloud</string>
     <string name="wait_dialog_text">Starting up</string>
     <string name="notification_registered">%s registered</string>
     <string name="notification_register_failure">%s failed to register</string>
     <string name="tunnel_host"></string>
-    <string name="about_version">Linphone Android %s</string>
-    <string name="about_liblinphone_version">Linphone Core %s</string>
-    <string name="about_text">GNU General Public License V2\n © 2010-2017 Belledonne Communications</string>
-    <string name="about_link">www.linphone.org</string>
-    <string name="sync_account_name">linphone contacts</string>
+    <string name="about_version">TRSMiCloud Android %s</string>
+    <string name="about_liblinphone_version">TRSMiCloud Core %s</string>
+    <string name="about_text">2016-2017 TRSMiCloud</string>
+    <string name="about_link">www.trsmicloud.com</string>
+    <string name="sync_account_name">trsmicloud contacts</string>
 
     <!-- Common -->
     <string name="username">Username</string>
@@ -52,7 +52,7 @@
     <string name="link_account">Link your account</string>
 
     <!-- Launch screen -->
-    <string name="app_description">the <i>libre</i> SIP client</string>
+    <string name="app_description">Softphone</string>
 
     <!-- Assistant -->
     <string name="welcome">Welcome</string>
@@ -65,21 +65,21 @@
     <string name="assistant_validate_account_1">Your account is created. Please check your mails to validate your account:</string>
     <string name="assistant_validate_account_2">Once it is done, come back here and click on the button.</string>
     <string name="assistant_welcome_desc">This assistant will help you configure and use your SIP account.</string>
-    <string name="assistant_linphone_login_desc">Please enter your username and password of Linphone account</string>
+    <string name="assistant_linphone_login_desc">Please enter your username and password of TRSMiCloud account</string>
     <string name="assistant_login_desc">Please enter your username and password with your SIP domain</string>
     <string name="assistant_remote_provisioning_desc">Please provide your provisioning URL</string>
     <string name="transport">Transport</string>
     <string name="assistant_create_account_phone_number_address">Your SIP address is</string>
-    <string name="assistant_login_linphone">Use Linphone account</string>
-    <string name="assistant_login_generic">Use SIP account</string>
+    <string name="assistant_login_linphone">Use TRSMiCloud account</string>
+    <string name="assistant_login_generic">Enter Configuration</string>
     <string name="assistant_remote_provisioning">Fetch remote configuration</string>
     <string name="assistant_create_account_part_1">Please confirm your country code and enter your phone number</string>
     <string name="assistant_create_account_part_2">We have sent you a SMS with a validation code to your phone number:</string>
     <string name="assistant_create_account_part_3">To complete your phone number verification, please enter the 4 digit code below:\n</string>
-    <string name="assistant_create_account_part_email">Please enter an username, email and password for your Linphone account</string>
+    <string name="assistant_create_account_part_email">Please enter an username, email and password for your TRSMiCloud account</string>
     <string name="assistant_display_name_optional">Display name (optional)</string>
-    <string name="assistant_linphone_account">Use your Linphone account</string>
-    <string name="assistant_generic_account">Use SIP account</string>
+    <string name="assistant_linphone_account">Use your TRSMiCloud account</string>
+    <string name="assistant_generic_account">Enter Configuration</string>
     <string name="assistant_remote_provisioning_title">Fetch remote configuration</string>
     <string name="assistant_fetch_apply">Fetch and apply</string>
     <string name="assistant_login">Login</string>
@@ -114,9 +114,9 @@
     <string name="use_email_for_validation">Use email address for account validation</string>
     <string name="login_with_username">Use your username and password instead of your phone number</string>
     <string name="phone_number_info_title">What will my phone number be used for?</string>
-    <string name="phone_number_info_content">\nThanks to your phone number, your friends will find you more easily.\n\n You will see in your address book who is using Linphone and your friends will know that they can rach you on Linphone as well.\n</string>
-    <string name="phone_number_link_info_content">\nYour friends will find you more easily if you link your account to your phone number\n\nYou will see in your address book who is using Linphone and your friends will know that they can reach you on Linphone as well.\n</string>
-    <string name="phone_number_link_info_content_already_account">You can only use your phone number with one Linphone account.\n\nIf you had already linked your number to an other account but you prefer to use this one, simply link it now and your number will automatically be moved to this account.</string>
+    <string name="phone_number_info_content">\nThanks to your phone number, your friends will find you more easily.\n\n You will see in your address book who is using TRSMiCloud and your friends will know that they can rach you on TRSMiCloud as well.\n</string>
+    <string name="phone_number_link_info_content">\nYour friends will find you more easily if you link your account to your phone number\n\nYou will see in your address book who is using TRSMiCloud and your friends will know that they can reach you on TRSMiCloud as well.\n</string>
+    <string name="phone_number_link_info_content_already_account">You can only use your phone number with one TRSMiCloud account.\n\nIf you had already linked your number to an other account but you prefer to use this one, simply link it now and your number will automatically be moved to this account.</string>
 
     <!-- Status -->
     <string name="invalid_email">Invalid email</string>
@@ -433,7 +433,7 @@
     <string name="content_description_search_contact">Search contact</string>
     <string name="content_description_search_country">Search country</string>
     <string name="content_description_all_contacts">All contacts</string>
-    <string name="content_description_linphone_contacts">Linphone contacts</string>
+    <string name="content_description_linphone_contacts">TRSMiCloud contacts</string>
     <string name="content_description_call_direction">Call direction</string>
     <string name="content_description_all_calls">All calls</string>
     <string name="content_description_missed_calls">Missed calls</string>

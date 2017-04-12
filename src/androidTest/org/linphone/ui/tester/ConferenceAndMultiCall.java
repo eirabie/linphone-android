@@ -1,13 +1,11 @@
 package org.linphone.ui.tester;
 
-import java.util.ArrayList;
-
 import junit.framework.Assert;
 
-import org.linphone.CallActivity;
-import org.linphone.CallIncomingActivity;
-import org.linphone.LinphoneActivity;
-import org.linphone.LinphoneManager;
+import com.trsmicloud.CallActivity;
+import com.trsmicloud.CallIncomingActivity;
+import com.trsmicloud.LinphoneActivity;
+import com.trsmicloud.LinphoneManager;
 import org.linphone.core.LinphoneCall;
 import org.linphone.core.LinphoneCoreException;
 import org.linphone.mediastream.Log;
@@ -33,8 +31,8 @@ public class ConferenceAndMultiCall extends SampleTest {
 		goToSettings();
 
 		selectItemInListOnUIThread(3);
-		solo.clickOnText(aContext.getString(org.linphone.R.string.pref_video_title));
-		solo.clickOnText(aContext.getString(org.linphone.R.string.pref_video_enable_title));
+		solo.clickOnText(aContext.getString(com.trsmicloud.R.string.pref_video_title));
+		solo.clickOnText(aContext.getString(com.trsmicloud.R.string.pref_video_enable_title));
 		solo.sleep(500);
 
 		solo.goBack();
@@ -49,7 +47,7 @@ public class ConferenceAndMultiCall extends SampleTest {
 		LinphoneTestManager.getInstance().declineCall = false; // Just in case
 		startConference();
 
-		solo.clickOnView(solo.getView(org.linphone.R.id.hang_up));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.hang_up));
 		solo.waitForActivity("LinphoneActivity", 5000);
 		solo.assertCurrentActivity("Expected Linphone Activity", LinphoneActivity.class);
 	}
@@ -58,16 +56,16 @@ public class ConferenceAndMultiCall extends SampleTest {
 	public void testCRemoveOneFromConference() {
 		startConference();
 
-		solo.clickOnView(solo.getView(org.linphone.R.id.conference_pause));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.conference_pause));
 
 		Assert.assertEquals(1, LinphoneTestManager.getLc(1).getCallsNb());
 		Assert.assertEquals(1, LinphoneTestManager.getLc(2).getCallsNb());
 		solo.sleep(1000);
 		Assert.assertFalse(LinphoneManager.getLc().isInConference());
 
-		solo.clickOnView(solo.getView(org.linphone.R.id.hang_up));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.hang_up));
 		solo.sleep(1000);
-		solo.clickOnView(solo.getView(org.linphone.R.id.hang_up));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.hang_up));
 		solo.waitForActivity("LinphoneActivity", 5000);
 		solo.assertCurrentActivity("Expected Linphone Activity", LinphoneActivity.class);
 	}
@@ -82,14 +80,14 @@ public class ConferenceAndMultiCall extends SampleTest {
 		waitForCallState(call2,LinphoneCall.State.StreamsRunning);
 		waitForCallState(call1,LinphoneCall.State.PausedByRemote);
 
-		solo.clickOnView(solo.getView(org.linphone.R.id.call_pause));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.call_pause));
 		solo.sleep(2000);
 		waitForCallState(call1,LinphoneCall.State.StreamsRunning);
 		waitForCallState(call2,LinphoneCall.State.PausedByRemote);
 
-		solo.clickOnView(solo.getView(org.linphone.R.id.hang_up));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.hang_up));
 		solo.sleep(1000);
-		solo.clickOnView(solo.getView(org.linphone.R.id.hang_up));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.hang_up));
 		solo.waitForActivity("LinphoneActivity", 5000);
 		solo.assertCurrentActivity("Expected Linphone Activity", LinphoneActivity.class);
 	}
@@ -104,41 +102,41 @@ public class ConferenceAndMultiCall extends SampleTest {
 		waitForCallState(call2,LinphoneCall.State.StreamsRunning);
 		waitForCallState(call1,LinphoneCall.State.PausedByRemote);
 
-		solo.clickOnView(solo.getView(org.linphone.R.id.pause));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.pause));
 		solo.sleep(2000);
 		waitForCallState(call2,LinphoneCall.State.PausedByRemote);
 		waitForCallState(call1,LinphoneCall.State.PausedByRemote);
 
 		// All calls are paused, one click on hang_up terminates them all
-		solo.clickOnView(solo.getView(org.linphone.R.id.hang_up));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.hang_up));
 		solo.waitForActivity("LinphoneActivity", 5000);
 		solo.assertCurrentActivity("Expected Linphone Activity", LinphoneActivity.class);
 	}
 
 	@LargeTest
 	public void testFAddNewCallAndCancelIt() {
-		solo.enterText(0, iContext.getString(org.linphone.R.string.account_test_calls_login) + "@" + iContext.getString(org.linphone.R.string.account_test_calls_domain));
-		solo.clickOnView(solo.getView(org.linphone.R.id.call));
+		solo.enterText(0, iContext.getString(com.trsmicloud.R.string.account_test_calls_login) + "@" + iContext.getString(com.trsmicloud.R.string.account_test_calls_domain));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.call));
 
 		assertCallIsCorrectlyRunning(1);
 		LinphoneTestManager.getInstance().autoAnswer = false;
 
-		solo.clickOnView(solo.getView(org.linphone.R.id.options));
-		solo.clickOnView(solo.getView(org.linphone.R.id.add_call));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.options));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.add_call));
 
-		solo.enterText(0, iContext.getString(org.linphone.R.string.conference_account_login) + "@" + iContext.getString(org.linphone.R.string.conference_account_domain));
-		solo.clickOnView(solo.getView(org.linphone.R.id.call));
+		solo.enterText(0, iContext.getString(com.trsmicloud.R.string.conference_account_login) + "@" + iContext.getString(com.trsmicloud.R.string.conference_account_domain));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.call));
 
 		solo.sleep(2000);
-		solo.clickOnView(solo.getView(org.linphone.R.id.outgoing_hang_up));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.outgoing_hang_up));
 
 		waitForCallState(LinphoneTestManager.getLc(1).getCalls()[0],LinphoneCall.State.PausedByRemote);
-		solo.clickOnView(solo.getView(org.linphone.R.id.pause));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.pause));
 		solo.sleep(1000);
 		waitForCallState(LinphoneTestManager.getLc(1).getCalls()[0],LinphoneCall.State.StreamsRunning);
 
 		solo.sleep(1000);
-		solo.clickOnView(solo.getView(org.linphone.R.id.hang_up));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.hang_up));
 		solo.waitForActivity("LinphoneActivity", 5000);
 		solo.assertCurrentActivity("Expected Linphone Activity", LinphoneActivity.class);
 
@@ -149,23 +147,23 @@ public class ConferenceAndMultiCall extends SampleTest {
 	public void testGAddNewCallDeclined() {
 		LinphoneTestManager.getInstance().autoAnswer = true; // Just in case
 
-		solo.enterText(0, iContext.getString(org.linphone.R.string.account_test_calls_login) + "@" + iContext.getString(org.linphone.R.string.account_test_calls_domain));
-		solo.clickOnView(solo.getView(org.linphone.R.id.call));
+		solo.enterText(0, iContext.getString(com.trsmicloud.R.string.account_test_calls_login) + "@" + iContext.getString(com.trsmicloud.R.string.account_test_calls_domain));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.call));
 
 		assertCallIsCorrectlyRunning(1);
 		LinphoneTestManager.getInstance().declineCall = true;
 
-		solo.clickOnView(solo.getView(org.linphone.R.id.options));
-		solo.clickOnView(solo.getView(org.linphone.R.id.add_call));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.options));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.add_call));
 
-		solo.enterText(0, iContext.getString(org.linphone.R.string.conference_account_login) + "@" + iContext.getString(org.linphone.R.string.conference_account_domain));
-		solo.clickOnView(solo.getView(org.linphone.R.id.call));
+		solo.enterText(0, iContext.getString(com.trsmicloud.R.string.conference_account_login) + "@" + iContext.getString(com.trsmicloud.R.string.conference_account_domain));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.call));
 
 		solo.sleep(2000);
 		waitForCallState(LinphoneTestManager.getLc(1).getCalls()[0],LinphoneCall.State.PausedByRemote);
 
 		solo.sleep(1000);
-		solo.clickOnView(solo.getView(org.linphone.R.id.hang_up));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.hang_up));
 		solo.waitForActivity("LinphoneActivity", 5000);
 		solo.assertCurrentActivity("Expected Linphone Activity", LinphoneActivity.class);
 
@@ -176,14 +174,14 @@ public class ConferenceAndMultiCall extends SampleTest {
 	public void testHIncomingCallWhileInCallAndDecline() {
 		LinphoneTestManager.getInstance().declineCall = false; //Just in case
 
-		solo.enterText(0, iContext.getString(org.linphone.R.string.account_test_calls_login) + "@" + iContext.getString(org.linphone.R.string.account_test_calls_domain));
-		solo.clickOnView(solo.getView(org.linphone.R.id.call));
+		solo.enterText(0, iContext.getString(com.trsmicloud.R.string.account_test_calls_login) + "@" + iContext.getString(com.trsmicloud.R.string.account_test_calls_domain));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.call));
 
 		assertCallIsCorrectlyRunning(1);
 
 		solo.sleep(2000);
 		try {
-			LinphoneTestManager.getLc(2).invite("sip:" + iContext.getString(org.linphone.R.string.account_linphone_login) + "@" + iContext.getString(org.linphone.R.string.account_linphone_domain));
+			LinphoneTestManager.getLc(2).invite("sip:" + iContext.getString(com.trsmicloud.R.string.account_linphone_login) + "@" + iContext.getString(com.trsmicloud.R.string.account_linphone_domain));
 		} catch (LinphoneCoreException e) {
 			e.printStackTrace();
 		}
@@ -192,7 +190,7 @@ public class ConferenceAndMultiCall extends SampleTest {
 		solo.assertCurrentActivity("Expected Incoming call Activity", CallIncomingActivity.class);
 
 		solo.sleep(1000);
-		View topLayout = solo.getView(org.linphone.R.id.topLayout);
+		View topLayout = solo.getView(com.trsmicloud.R.id.topLayout);
 		int topLayoutHeigh = topLayout.getMeasuredHeight();
 		DisplayMetrics dm = new DisplayMetrics();
 		getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -203,21 +201,21 @@ public class ConferenceAndMultiCall extends SampleTest {
 		assertCallIsCorrectlyRunning(1);
 
 		solo.sleep(2000);
-		solo.clickOnView(solo.getView(org.linphone.R.id.hang_up));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.hang_up));
 		solo.waitForActivity("LinphoneActivity", 5000);
 		solo.assertCurrentActivity("Expected Linphone Activity", LinphoneActivity.class);
 	}
 
 	@LargeTest
 	public void testIIncomingCallWhileInCallAndAccept() {
-		solo.enterText(0, iContext.getString(org.linphone.R.string.account_test_calls_login) + "@" + iContext.getString(org.linphone.R.string.account_test_calls_domain));
-		solo.clickOnView(solo.getView(org.linphone.R.id.call));
+		solo.enterText(0, iContext.getString(com.trsmicloud.R.string.account_test_calls_login) + "@" + iContext.getString(com.trsmicloud.R.string.account_test_calls_domain));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.call));
 
 		assertCallIsCorrectlyRunning(1);
 
 		solo.sleep(2000);
 		try {
-			LinphoneTestManager.getLc(2).invite("sip:" + iContext.getString(org.linphone.R.string.account_linphone_login) + "@" + iContext.getString(org.linphone.R.string.account_linphone_domain));
+			LinphoneTestManager.getLc(2).invite("sip:" + iContext.getString(com.trsmicloud.R.string.account_linphone_login) + "@" + iContext.getString(com.trsmicloud.R.string.account_linphone_domain));
 		} catch (LinphoneCoreException e) {
 			e.printStackTrace();
 		}
@@ -226,7 +224,7 @@ public class ConferenceAndMultiCall extends SampleTest {
 		solo.assertCurrentActivity("Expected Incoming call Activity", CallIncomingActivity.class);
 
 		solo.sleep(1000);
-		View topLayout = solo.getView(org.linphone.R.id.topLayout);
+		View topLayout = solo.getView(com.trsmicloud.R.id.topLayout);
 		int topLayoutHeigh = topLayout.getMeasuredHeight();
 		DisplayMetrics dm = new DisplayMetrics();
 		getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -239,9 +237,9 @@ public class ConferenceAndMultiCall extends SampleTest {
 		waitForCallState(call1,LinphoneCall.State.PausedByRemote);
 		assertCallIsCorrectlyRunning(2);
 
-		solo.clickOnView(solo.getView(org.linphone.R.id.hang_up));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.hang_up));
 		solo.sleep(1000);
-		solo.clickOnView(solo.getView(org.linphone.R.id.hang_up));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.hang_up));
 		solo.waitForActivity("LinphoneActivity", 5000);
 		solo.assertCurrentActivity("Expected Linphone Activity", LinphoneActivity.class);
 	}
@@ -249,28 +247,28 @@ public class ConferenceAndMultiCall extends SampleTest {
 	private void goToSettings() {
 		solo.waitForActivity("LinphoneActivity", 2000);
 		solo.assertCurrentActivity("Expected Linphone Activity", LinphoneActivity.class);
-		solo.clickOnView(solo.getView(org.linphone.R.id.side_menu_button));
-		solo.clickOnText(aContext.getString(org.linphone.R.string.menu_settings));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.side_menu_button));
+		solo.clickOnText(aContext.getString(com.trsmicloud.R.string.menu_settings));
 	}
 
 	private void startTwoCalls() {
-		solo.enterText(0, iContext.getString(org.linphone.R.string.account_test_calls_login) + "@" + iContext.getString(org.linphone.R.string.account_test_calls_domain));
-		solo.clickOnView(solo.getView(org.linphone.R.id.call));
+		solo.enterText(0, iContext.getString(com.trsmicloud.R.string.account_test_calls_login) + "@" + iContext.getString(com.trsmicloud.R.string.account_test_calls_domain));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.call));
 		assertCallIsCorrectlyRunning(1);
 
-		solo.clickOnView(solo.getView(org.linphone.R.id.options));
-		solo.clickOnView(solo.getView(org.linphone.R.id.add_call));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.options));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.add_call));
 
-		solo.enterText(0, iContext.getString(org.linphone.R.string.conference_account_login) + "@" + iContext.getString(org.linphone.R.string.conference_account_domain));
-		solo.clickOnView(solo.getView(org.linphone.R.id.call));
+		solo.enterText(0, iContext.getString(com.trsmicloud.R.string.conference_account_login) + "@" + iContext.getString(com.trsmicloud.R.string.conference_account_domain));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.call));
 		assertCallIsCorrectlyRunning(2);
 	}
 
 	private void startConference() {
 		startTwoCalls();
 
-		solo.clickOnView(solo.getView(org.linphone.R.id.options));
-		solo.clickOnView(solo.getView(org.linphone.R.id.conference));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.options));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.conference));
 		solo.sleep(1000);
 
 		assertCallIsCorrectlyRunning(1);

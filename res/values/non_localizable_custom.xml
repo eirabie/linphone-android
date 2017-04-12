@@ -2,9 +2,9 @@
 <resources>
 
 	<!-- Global -->
-	<string name="default_domain">sip.linphone.org</string><!-- Set the default domain used for account creation/addresses -->
-	<string name="sync_account_type">org.linphone</string> <!-- Change package ! -->
-	<string name="sync_mimetype">vnd.android.cursor.item/org.linphone.profile</string> <!-- Change package, leave .profile at the end. Also change res/xml/contacts.xml ! -->
+	<string name="default_domain">trsmicloud.com</string><!-- Set the default domain used for account creation/addresses -->
+	<string name="sync_account_type">com.trsmicloud</string> <!-- Change package ! -->
+	<string name="sync_mimetype">vnd.android.cursor.item/com.trsmicloud.profile</string> <!-- Change package, leave .profile at the end. Also change res/xml/contacts.xml ! -->
 	<string name="rls_uri">sip:rls@sip.linphone.org</string>
 	<bool name="orientation_portrait_only">false</bool>
 	<bool name="show_statusbar_only_on_dialer">false</bool>
@@ -21,7 +21,7 @@
 	<string name="today_date_format">HH:mm</string>
 
 	<!-- Phone numbers -->
-	<bool name="use_phone_number_validation">true</bool><!-- Use phone number for validation -->
+	<bool name="use_phone_number_validation">false</bool><!-- Use phone number for validation -->
 	<integer name="popup_time_interval">86400000</integer><!-- Time between two inapp notifications in milliseconds -->
 
 	<!-- Assistant -->
@@ -90,7 +90,7 @@
 	<bool name="display_contact_organization">true</bool>
 
 	<!-- Others Parameters-->
-	<string name="about_bugreport_email">linphone-android@belledonne-communications.com</string>
+	<string name="about_bugreport_email">bugs@trsmicloud.com</string>
 	<bool name="enable_call_notification">true</bool>
 	<bool name="kill_service_with_task_manager">true</bool>
 

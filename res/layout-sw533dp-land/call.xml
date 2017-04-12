@@ -7,7 +7,7 @@
 
 	<fragment
 		android:id="@+id/status"
-		android:name="org.linphone.StatusFragment"
+		android:name="com.trsmicloud.StatusFragment"
 		android:layout_width="match_parent"
 		android:layout_height="35dp"
 		tools:layout="@layout/status" />
@@ -194,7 +194,7 @@
 				</RelativeLayout>
 			</FrameLayout>
 
-			<org.linphone.ui.Numpad
+			<com.trsmicloud.ui.Numpad
 				android:id="@+id/numpad"
 				android:background="@color/colorF"
 				android:contentDescription="@string/content_description_numpad"

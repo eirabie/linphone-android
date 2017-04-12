@@ -24,26 +24,14 @@
 			android:layout_marginTop="20dp"
 			android:layout_gravity="center"/>
 
-		<TextView
-			android:text="@string/app_description"
-			android:textSize="28sp"
-			android:textColor="@color/colorA"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center"/>
-
 	</LinearLayout>
 
-    <ProgressBar 
-        android:layout_height="wrap_content" 
-        android:layout_width="wrap_content"
-		android:layout_marginBottom="20dp"
-        android:layout_gravity="center_horizontal|bottom" />
-
-	<View
-		android:background="@color/colorA"
-		android:layout_height="10dp"
-		android:layout_width="100dp"
-		android:layout_gravity="center_horizontal|bottom" />
+	<TextView
+		android:text="Powered by the-right-solution"
+		android:textSize="20sp"
+		android:textColor="@color/colorF"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal|bottom"/>
 
 </FrameLayout>

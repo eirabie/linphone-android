@@ -2,13 +2,12 @@ package org.linphone.ui.tester;
 
 import junit.framework.Assert;
 
-import org.linphone.CallActivity;
-import org.linphone.CallIncomingActivity;
-import org.linphone.CallOutgoingActivity;
-import org.linphone.LinphoneActivity;
-import org.linphone.LinphoneManager;
+import com.trsmicloud.CallActivity;
+import com.trsmicloud.CallIncomingActivity;
+import com.trsmicloud.CallOutgoingActivity;
+import com.trsmicloud.LinphoneActivity;
+import com.trsmicloud.LinphoneManager;
 import org.linphone.core.LinphoneCall;
-import org.linphone.mediastream.Log;
 import org.linphone.core.LinphoneCore;
 import org.linphone.core.LinphoneCoreException;
 import org.linphone.core.PayloadType;
@@ -16,8 +15,6 @@ import org.linphone.core.PayloadType;
 import android.test.suitebuilder.annotation.SmallTest;
 import android.test.suitebuilder.annotation.LargeTest;
 import android.test.suitebuilder.annotation.MediumTest;
-import android.util.DisplayMetrics;
-import android.view.View;
 
 /**
  * @author Sylvain Berfini
@@ -34,9 +31,9 @@ public class CallsVideo extends SampleTest {
 		// enable auto accept and auto share video
 		goToVideoCodecsSettings();
 		solo.sleep(500);
-		solo.clickOnText(aContext.getString(org.linphone.R.string.pref_video_enable_title));
-		solo.clickOnText(aContext.getString(org.linphone.R.string.pref_video_initiate_call_with_video_title));
-		solo.clickOnText(aContext.getString(org.linphone.R.string.pref_video_automatically_accept_video_title));
+		solo.clickOnText(aContext.getString(com.trsmicloud.R.string.pref_video_enable_title));
+		solo.clickOnText(aContext.getString(com.trsmicloud.R.string.pref_video_initiate_call_with_video_title));
+		solo.clickOnText(aContext.getString(com.trsmicloud.R.string.pref_video_automatically_accept_video_title));
 		solo.sleep(500);
 		solo.goBack();
 
@@ -54,16 +51,16 @@ public class CallsVideo extends SampleTest {
 		LinphoneTestManager.getInstance().declineCall = false; // Just in case
 		LinphoneTestManager.getLc().enableVideo(true, true);
 
-		solo.enterText(0, iContext.getString(org.linphone.R.string.account_test_calls_login) + "@" + iContext.getString(org.linphone.R.string.account_test_calls_domain));
-		solo.clickOnView(solo.getView(org.linphone.R.id.call));
+		solo.enterText(0, iContext.getString(com.trsmicloud.R.string.account_test_calls_login) + "@" + iContext.getString(com.trsmicloud.R.string.account_test_calls_domain));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.call));
 
 		assertOutgoingCallIsCorrectlyRunning();
 		assertCallIsCorrectlyRunning();
 		assertCallIsRunningWithVideo();
 
-		solo.clickOnView(solo.getView(org.linphone.R.id.video_frame));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.video_frame));
 
-		solo.clickOnView(solo.getView(org.linphone.R.id.hang_up));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.hang_up));
 		solo.waitForActivity("LinphoneActivity", 5000);
 		solo.assertCurrentActivity("Expected Linphone Activity", LinphoneActivity.class);
 	}
@@ -79,17 +76,17 @@ public class CallsVideo extends SampleTest {
 		LinphoneManager.getLc().setUseRfc2833ForDtmfs(true);
 		LinphoneManager.getLc().setUseSipInfoForDtmfs(false);
 
-		solo.enterText(0, iContext.getString(org.linphone.R.string.account_test_calls_login) + "@" + iContext.getString(org.linphone.R.string.account_test_calls_domain));
-		solo.clickOnView(solo.getView(org.linphone.R.id.call));
+		solo.enterText(0, iContext.getString(com.trsmicloud.R.string.account_test_calls_login) + "@" + iContext.getString(com.trsmicloud.R.string.account_test_calls_domain));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.call));
 
 		assertCallIsCorrectlyRunning();
 
-		solo.clickOnView(solo.getView(org.linphone.R.id.dialer));
-		solo.clickOnView(solo.getView(org.linphone.R.id.Digit3));
-		solo.clickOnView(solo.getView(org.linphone.R.id.dialer));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.dialer));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.Digit3));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.dialer));
 
 		solo.sleep(1000);
-		solo.clickOnView(solo.getView(org.linphone.R.id.hang_up));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.hang_up));
 
 		//To enable when issue http://git.linphone.org/mantis/view.php?id=750 will be fixed
 		//Assert.assertTrue(LinphoneTestManager.getInstance().isDTMFReceived);
@@ -105,17 +102,17 @@ public class CallsVideo extends SampleTest {
 		LinphoneManager.getLc().setUseRfc2833ForDtmfs(false);
 		LinphoneManager.getLc().setUseSipInfoForDtmfs(true);
 
-		solo.enterText(0, iContext.getString(org.linphone.R.string.account_test_calls_login) + "@" + iContext.getString(org.linphone.R.string.account_test_calls_domain));
-		solo.clickOnView(solo.getView(org.linphone.R.id.call));
+		solo.enterText(0, iContext.getString(com.trsmicloud.R.string.account_test_calls_login) + "@" + iContext.getString(com.trsmicloud.R.string.account_test_calls_domain));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.call));
 
 		assertCallIsCorrectlyRunning();
 
-		solo.clickOnView(solo.getView(org.linphone.R.id.dialer));
-		solo.clickOnView(solo.getView(org.linphone.R.id.Digit3));
-		solo.clickOnView(solo.getView(org.linphone.R.id.dialer));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.dialer));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.Digit3));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.dialer));
 
 		solo.sleep(1000);
-		solo.clickOnView(solo.getView(org.linphone.R.id.hang_up));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.hang_up));
 
 		//To enable when issue http://git.linphone.org/mantis/view.php?id=751 will be fixed
 		//Assert.assertTrue(LinphoneTestManager.getInstance().isDTMFReceived);
@@ -130,13 +127,13 @@ public class CallsVideo extends SampleTest {
 	public void testEOutgoingCallToAudioClient() {
 		LinphoneTestManager.getLc().enableVideo(false, false);
 
-		solo.enterText(0, iContext.getString(org.linphone.R.string.account_test_calls_login) + "@" + iContext.getString(org.linphone.R.string.account_test_calls_domain));
-		solo.clickOnView(solo.getView(org.linphone.R.id.call));
+		solo.enterText(0, iContext.getString(com.trsmicloud.R.string.account_test_calls_login) + "@" + iContext.getString(com.trsmicloud.R.string.account_test_calls_domain));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.call));
 
 		assertOutgoingCallIsCorrectlyRunning();
 		assertCallIsCorrectlyRunning();
 
-		solo.clickOnView(solo.getView(org.linphone.R.id.hang_up));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.hang_up));
 		solo.waitForActivity("LinphoneActivity", 5000);
 		solo.assertCurrentActivity("Expected Linphone Activity", LinphoneActivity.class);
 	}
@@ -146,15 +143,15 @@ public class CallsVideo extends SampleTest {
 	public void testFOutgoingCallToVideoClient() {
 		LinphoneTestManager.getLc().enableVideo(true, true);
 
-		solo.enterText(0, iContext.getString(org.linphone.R.string.account_test_calls_login) + "@" + iContext.getString(org.linphone.R.string.account_test_calls_domain));
-		solo.clickOnView(solo.getView(org.linphone.R.id.call));
+		solo.enterText(0, iContext.getString(com.trsmicloud.R.string.account_test_calls_login) + "@" + iContext.getString(com.trsmicloud.R.string.account_test_calls_domain));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.call));
 
 		assertOutgoingCallIsCorrectlyRunning();
 		assertCallIsCorrectlyRunning();
 		assertCallIsRunningWithVideo();
 
-		solo.clickOnView(solo.getView(org.linphone.R.id.video_frame));
-		solo.clickOnView(solo.getView(org.linphone.R.id.hang_up));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.video_frame));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.hang_up));
 		solo.waitForActivity("LinphoneActivity", 5000);
 		solo.assertCurrentActivity("Expected Linphone Activity", LinphoneActivity.class);
 	}
@@ -164,8 +161,8 @@ public class CallsVideo extends SampleTest {
 	public void testGOutgoingCallCancelled() {
 		LinphoneTestManager.getInstance().autoAnswer = false;
 
-		solo.enterText(0, iContext.getString(org.linphone.R.string.account_test_calls_login) + "@" + iContext.getString(org.linphone.R.string.account_test_calls_domain));
-		solo.clickOnView(solo.getView(org.linphone.R.id.call));
+		solo.enterText(0, iContext.getString(com.trsmicloud.R.string.account_test_calls_login) + "@" + iContext.getString(com.trsmicloud.R.string.account_test_calls_domain));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.call));
 
 		solo.waitForActivity("InCallActivity", 5000);
 		solo.assertCurrentActivity("Expected InCall Activity", CallActivity.class);
@@ -175,7 +172,7 @@ public class CallsVideo extends SampleTest {
 
 		LinphoneTestManager.getInstance().autoAnswer = true;
 
-		solo.clickOnView(solo.getView(org.linphone.R.id.hang_up));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.hang_up));
 		solo.waitForActivity("LinphoneActivity", 5000);
 		solo.assertCurrentActivity("Expected Linphone Activity", LinphoneActivity.class);
 	}
@@ -185,11 +182,11 @@ public class CallsVideo extends SampleTest {
 		LinphoneTestManager.getInstance().autoAnswer = true; // Just in case
 		LinphoneTestManager.getInstance().declineCall = true;
 
-		solo.enterText(0, iContext.getString(org.linphone.R.string.account_test_calls_login) + "@" + iContext.getString(org.linphone.R.string.account_test_calls_domain));
-		solo.clickOnView(solo.getView(org.linphone.R.id.call));
+		solo.enterText(0, iContext.getString(com.trsmicloud.R.string.account_test_calls_login) + "@" + iContext.getString(com.trsmicloud.R.string.account_test_calls_domain));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.call));
 
 		solo.sleep(1500);
-		Assert.assertTrue(solo.searchText(aContext.getString(org.linphone.R.string.error_call_declined)));
+		Assert.assertTrue(solo.searchText(aContext.getString(com.trsmicloud.R.string.error_call_declined)));
 
 		solo.waitForActivity("LinphoneActivity", 5000);
 		solo.assertCurrentActivity("Expected Linphone Activity", LinphoneActivity.class);
@@ -204,7 +201,7 @@ public class CallsVideo extends SampleTest {
 
 		solo.sleep(2000);
 		try {
-			LinphoneTestManager.getLc().invite("sip:" + iContext.getString(org.linphone.R.string.account_linphone_login) + "@" + iContext.getString(org.linphone.R.string.account_linphone_domain));
+			LinphoneTestManager.getLc().invite("sip:" + iContext.getString(com.trsmicloud.R.string.account_linphone_login) + "@" + iContext.getString(com.trsmicloud.R.string.account_linphone_domain));
 		} catch (LinphoneCoreException e) {
 			e.printStackTrace();
 		}
@@ -213,7 +210,7 @@ public class CallsVideo extends SampleTest {
 		solo.assertCurrentActivity("Expected Incoming Call Activity", CallIncomingActivity.class);
 
 		solo.sleep(1000);
-		solo.clickOnView(solo.getView(org.linphone.R.id.accept));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.accept));
 
 		assertCallIsCorrectlyRunning();
 	}
@@ -226,7 +223,7 @@ public class CallsVideo extends SampleTest {
 
 		solo.sleep(2000);
 		try {
-			LinphoneTestManager.getLc().invite("sip:" + iContext.getString(org.linphone.R.string.account_linphone_login) + "@" + iContext.getString(org.linphone.R.string.account_linphone_domain));
+			LinphoneTestManager.getLc().invite("sip:" + iContext.getString(com.trsmicloud.R.string.account_linphone_login) + "@" + iContext.getString(com.trsmicloud.R.string.account_linphone_domain));
 		} catch (LinphoneCoreException e) {
 			e.printStackTrace();
 		}
@@ -234,7 +231,7 @@ public class CallsVideo extends SampleTest {
 		solo.waitForActivity("IncomingCallActivity", 5000);
 		solo.assertCurrentActivity("Expected Incoming Call Activity", CallIncomingActivity.class);
 
-		solo.clickOnView(solo.getView(org.linphone.R.id.accept));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.accept));
 
 		assertCallIsCorrectlyRunning();
 		assertCallIsRunningWithVideo();
@@ -254,24 +251,24 @@ public class CallsVideo extends SampleTest {
 	@MediumTest
 	@LargeTest
 	public void testKSelfPauseResumeCall() {
-		solo.enterText(0, iContext.getString(org.linphone.R.string.account_test_calls_login) + "@" + iContext.getString(org.linphone.R.string.account_test_calls_domain));
-		solo.clickOnView(solo.getView(org.linphone.R.id.call));
+		solo.enterText(0, iContext.getString(com.trsmicloud.R.string.account_test_calls_login) + "@" + iContext.getString(com.trsmicloud.R.string.account_test_calls_domain));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.call));
 
 		assertCallIsCorrectlyRunning();
 
-		solo.clickOnView(solo.getView(org.linphone.R.id.video_frame));
-		solo.clickOnView(solo.getView(org.linphone.R.id.pause));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.video_frame));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.pause));
 		solo.sleep(1000);
 
 		waitForCallPaused(LinphoneManager.getLc().getCalls()[0]);
-		solo.clickOnView(solo.getView(org.linphone.R.id.video_frame));
-		solo.clickOnView(solo.getView(org.linphone.R.id.call_pause));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.video_frame));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.call_pause));
 		solo.sleep(1000);
 
 		waitForCallResumed(LinphoneManager.getLc().getCalls()[0]);
 
-		solo.clickOnView(solo.getView(org.linphone.R.id.video_frame));
-		solo.clickOnView(solo.getView(org.linphone.R.id.hang_up));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.video_frame));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.hang_up));
 		solo.waitForActivity("LinphoneActivity", 5000);
 		solo.assertCurrentActivity("Expected Linphone Activity", LinphoneActivity.class);
 	}
@@ -279,8 +276,8 @@ public class CallsVideo extends SampleTest {
 	@MediumTest
 	@LargeTest
 	public void testLRemotePauseResumeCall() {
-		solo.enterText(0, iContext.getString(org.linphone.R.string.account_test_calls_login) + "@" + iContext.getString(org.linphone.R.string.account_test_calls_domain));
-		solo.clickOnView(solo.getView(org.linphone.R.id.call));
+		solo.enterText(0, iContext.getString(com.trsmicloud.R.string.account_test_calls_login) + "@" + iContext.getString(com.trsmicloud.R.string.account_test_calls_domain));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.call));
 
 		assertCallIsCorrectlyRunning();
 
@@ -288,14 +285,14 @@ public class CallsVideo extends SampleTest {
 		solo.sleep(1000);
 
 		waitForCallState(LinphoneManager.getLc().getCalls()[0], LinphoneCall.State.PausedByRemote);
-		solo.clickOnView(solo.getView(org.linphone.R.id.video_frame));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.video_frame));
 		LinphoneTestManager.getLc().resumeCall(LinphoneTestManager.getLc().getCalls()[0]);
 		solo.sleep(1000);
 
 		waitForCallResumed(LinphoneManager.getLc().getCalls()[0]);
 
-		solo.clickOnView(solo.getView(org.linphone.R.id.video_frame));
-		solo.clickOnView(solo.getView(org.linphone.R.id.hang_up));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.video_frame));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.hang_up));
 		solo.waitForActivity("LinphoneActivity", 5000);
 		solo.assertCurrentActivity("Expected Linphone Activity", LinphoneActivity.class);
 	}
@@ -303,19 +300,19 @@ public class CallsVideo extends SampleTest {
 	@MediumTest
 	@LargeTest
 	public void testMSwitchOffVideoInCall() {
-		solo.enterText(0, iContext.getString(org.linphone.R.string.account_test_calls_login) + "@" + iContext.getString(org.linphone.R.string.account_test_calls_domain));
-		solo.clickOnView(solo.getView(org.linphone.R.id.call));
+		solo.enterText(0, iContext.getString(com.trsmicloud.R.string.account_test_calls_login) + "@" + iContext.getString(com.trsmicloud.R.string.account_test_calls_domain));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.call));
 
 		assertCallIsCorrectlyRunning();
 		assertCallIsRunningWithVideo();
 
-		Assert.assertTrue(solo.getView(org.linphone.R.id.video).isEnabled());
-		solo.clickOnView(solo.getView(org.linphone.R.id.video_frame));
-		solo.clickOnView(solo.getView(org.linphone.R.id.video));
+		Assert.assertTrue(solo.getView(com.trsmicloud.R.id.video).isEnabled());
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.video_frame));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.video));
 		solo.sleep(1000);
 		Assert.assertFalse(LinphoneManager.getLc().getCurrentCall().getCurrentParamsCopy().getVideoEnabled());
 
-		solo.clickOnView(solo.getView(org.linphone.R.id.hang_up));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.hang_up));
 		solo.waitForActivity("LinphoneActivity", 5000);
 		solo.assertCurrentActivity("Expected Linphone Activity", LinphoneActivity.class);
 	}
@@ -345,15 +342,15 @@ public class CallsVideo extends SampleTest {
 	private void goToSettings() {
 		solo.waitForActivity("LinphoneActivity", 2000);
 		solo.assertCurrentActivity("Expected Linphone Activity", LinphoneActivity.class);
-		solo.clickOnView(solo.getView(org.linphone.R.id.side_menu_button));
-		solo.clickOnText(aContext.getString(org.linphone.R.string.menu_settings));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.side_menu_button));
+		solo.clickOnText(aContext.getString(com.trsmicloud.R.string.menu_settings));
 	}
 
 	private void goToAudioCodecsSettings() {
 		goToSettings();
 
 		selectItemInListOnUIThread(4);
-		solo.clickOnText(aContext.getString(org.linphone.R.string.pref_audio_title));
+		solo.clickOnText(aContext.getString(com.trsmicloud.R.string.pref_audio_title));
 		solo.sleep(500);
 	}
 
@@ -361,10 +358,10 @@ public class CallsVideo extends SampleTest {
 		//goToSettings();
 
 		selectItemInListOnUIThread(6);
-		if (solo.searchText(aContext.getString(org.linphone.R.string.pref_video_title), 2)) // Needed in case pref_video_enable_title contains pref_video
-			solo.clickOnText(aContext.getString(org.linphone.R.string.pref_video_title), 2);
+		if (solo.searchText(aContext.getString(com.trsmicloud.R.string.pref_video_title), 2)) // Needed in case pref_video_enable_title contains pref_video
+			solo.clickOnText(aContext.getString(com.trsmicloud.R.string.pref_video_title), 2);
 		else
-			solo.clickOnText(aContext.getString(org.linphone.R.string.pref_video_title));
+			solo.clickOnText(aContext.getString(com.trsmicloud.R.string.pref_video_title));
 		solo.sleep(500);
 	}
 
@@ -464,17 +461,17 @@ public class CallsVideo extends SampleTest {
 		goToVideoCodecsSettings();
 
 		if (isVideoCodecEnabled("VP8")) {
-			solo.clickOnText(aContext.getString(org.linphone.R.string.pref_video_codec_vp8_title));
+			solo.clickOnText(aContext.getString(com.trsmicloud.R.string.pref_video_codec_vp8_title));
 			solo.sleep(500);
 		}
 
 		if (isVideoCodecEnabled("H264")) {
-			solo.clickOnText(aContext.getString(org.linphone.R.string.pref_video_codec_h264_title));
+			solo.clickOnText(aContext.getString(com.trsmicloud.R.string.pref_video_codec_h264_title));
 			solo.sleep(500);
 		}
 
 		if (isVideoCodecEnabled("MP4V-ES")) {
-			solo.clickOnText(aContext.getString(org.linphone.R.string.pref_video_codec_mpeg4_title));
+			solo.clickOnText(aContext.getString(com.trsmicloud.R.string.pref_video_codec_mpeg4_title));
 			solo.sleep(500);
 		}
 	}
@@ -483,17 +480,17 @@ public class CallsVideo extends SampleTest {
 //		goToVideoCodecsSettings();
 //
 //		if (isVideoCodecEnabled("VP8")) {
-//			solo.clickOnText(aContext.getString(org.linphone.R.string.pref_video_codec_vp8_title));
+//			solo.clickOnText(aContext.getString(com.trsmicloud.R.string.pref_video_codec_vp8_title));
 //			solo.sleep(500);
 //		}
 //
 //		if (!isVideoCodecEnabled("H264")) {
-//			solo.clickOnText(aContext.getString(org.linphone.R.string.pref_video_codec_h264_title));
+//			solo.clickOnText(aContext.getString(com.trsmicloud.R.string.pref_video_codec_h264_title));
 //			solo.sleep(500);
 //		}
 //
 //		if (isVideoCodecEnabled("MP4V-ES")) {
-//			solo.clickOnText(aContext.getString(org.linphone.R.string.pref_video_codec_mpeg4_title));
+//			solo.clickOnText(aContext.getString(com.trsmicloud.R.string.pref_video_codec_mpeg4_title));
 //			solo.sleep(500);
 //		}
 //	}
@@ -502,17 +499,17 @@ public class CallsVideo extends SampleTest {
 //		goToVideoCodecsSettings();
 //
 //		if (!isVideoCodecEnabled("VP8")) {
-//			solo.clickOnText(aContext.getString(org.linphone.R.string.pref_video_codec_vp8_title));
+//			solo.clickOnText(aContext.getString(com.trsmicloud.R.string.pref_video_codec_vp8_title));
 //			solo.sleep(500);
 //		}
 //
 //		if (!isVideoCodecEnabled("H264")) {
-//			solo.clickOnText(aContext.getString(org.linphone.R.string.pref_video_codec_h264_title));
+//			solo.clickOnText(aContext.getString(com.trsmicloud.R.string.pref_video_codec_h264_title));
 //			solo.sleep(500);
 //		}
 //
 //		if (!isVideoCodecEnabled("MP4V-ES")) {
-//			solo.clickOnText(aContext.getString(org.linphone.R.string.pref_video_codec_mpeg4_title));
+//			solo.clickOnText(aContext.getString(com.trsmicloud.R.string.pref_video_codec_mpeg4_title));
 //			solo.sleep(500);
 //		}
 //	}

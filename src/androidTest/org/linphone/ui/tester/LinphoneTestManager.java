@@ -4,10 +4,10 @@ import java.nio.ByteBuffer;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.linphone.LinphoneException;
-import org.linphone.LinphoneManager;
-import org.linphone.LinphoneManager.LinphoneConfigException;
-import org.linphone.LinphoneService;
+import com.trsmicloud.LinphoneException;
+import com.trsmicloud.LinphoneManager;
+import com.trsmicloud.LinphoneManager.LinphoneConfigException;
+import com.trsmicloud.LinphoneService;
 import org.linphone.core.LinphoneAddress;
 import org.linphone.core.LinphoneAddress.TransportType;
 import org.linphone.core.LinphoneAuthInfo;
@@ -190,13 +190,13 @@ public class LinphoneTestManager implements LinphoneCoreListener{
 
 		String username, password, domain;
 		if (mLc.equals(mLc1)) {
-			username = mIContext.getString(org.linphone.R.string.account_test_calls_login);
-			password = mIContext.getString(org.linphone.R.string.account_test_calls_pwd);
-			domain = mIContext.getString(org.linphone.R.string.account_test_calls_domain);
+			username = mIContext.getString(com.trsmicloud.R.string.account_test_calls_login);
+			password = mIContext.getString(com.trsmicloud.R.string.account_test_calls_pwd);
+			domain = mIContext.getString(com.trsmicloud.R.string.account_test_calls_domain);
 		} else {
-			username = mIContext.getString(org.linphone.R.string.conference_account_login);
-			password = mIContext.getString(org.linphone.R.string.conference_account_password);
-			domain = mIContext.getString(org.linphone.R.string.conference_account_domain);
+			username = mIContext.getString(com.trsmicloud.R.string.conference_account_login);
+			password = mIContext.getString(com.trsmicloud.R.string.conference_account_password);
+			domain = mIContext.getString(com.trsmicloud.R.string.conference_account_domain);
 		}
 
 		LinphoneAuthInfo lAuthInfo =  LinphoneCoreFactory.instance().createAuthInfo(username, password, null, domain);

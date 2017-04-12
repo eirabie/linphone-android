@@ -2,10 +2,10 @@ package org.linphone.ui.tester;
 
 import junit.framework.Assert;
 
-import org.linphone.FragmentsAvailable;
-import org.linphone.LinphoneActivity;
-import org.linphone.LinphoneManager;
-import org.linphone.LinphonePreferences;
+import com.trsmicloud.FragmentsAvailable;
+import com.trsmicloud.LinphoneActivity;
+import com.trsmicloud.LinphoneManager;
+import com.trsmicloud.LinphonePreferences;
 import org.linphone.core.LinphoneProxyConfig;
 
 import android.test.suitebuilder.annotation.LargeTest;
@@ -17,8 +17,8 @@ public class AccountManagement extends SampleTest {
 	@LargeTest
 	public void testAEditAccount() {
 		goToSettings();
-		solo.clickOnText(iContext.getString(org.linphone.R.string.account_generic_login) + "@" + iContext.getString(org.linphone.R.string.account_generic_domain));
-		solo.clickOnText(aContext.getString(org.linphone.R.string.pref_username));
+		solo.clickOnText(iContext.getString(com.trsmicloud.R.string.account_generic_login) + "@" + iContext.getString(com.trsmicloud.R.string.account_generic_domain));
+		solo.clickOnText(aContext.getString(com.trsmicloud.R.string.pref_username));
 		solo.enterText(0, "new");
 
 		solo.clickOnView(solo.getView(android.R.id.button1));
@@ -39,9 +39,9 @@ public class AccountManagement extends SampleTest {
 	@LargeTest
 	public void testBDeleteAccount() {
 		goToSettings();
-		solo.clickOnText(iContext.getString(org.linphone.R.string.account_generic_login) + "new");
+		solo.clickOnText(iContext.getString(com.trsmicloud.R.string.account_generic_login) + "new");
 		selectItemInListOnUIThread(16);
-		solo.clickLongOnText(aContext.getString(org.linphone.R.string.pref_delete_account));
+		solo.clickLongOnText(aContext.getString(com.trsmicloud.R.string.pref_delete_account));
 
 		solo.goBack();
 		solo.goBack();
@@ -53,9 +53,9 @@ public class AccountManagement extends SampleTest {
 	@LargeTest
 	public void testCDisableAccount() {
 		goToSettings();
-		solo.clickOnText(iContext.getString(org.linphone.R.string.account_linphone_login));
+		solo.clickOnText(iContext.getString(com.trsmicloud.R.string.account_linphone_login));
 		selectItemInListOnUIThread(14);
-		solo.clickLongOnText(aContext.getString(org.linphone.R.string.pref_disable_account));
+		solo.clickLongOnText(aContext.getString(com.trsmicloud.R.string.pref_disable_account));
 
 		solo.goBack();
 		solo.goBack();
@@ -66,9 +66,9 @@ public class AccountManagement extends SampleTest {
 	@LargeTest
 	public void testDEnableAccount() {
 		goToSettings();
-		solo.clickOnText(iContext.getString(org.linphone.R.string.account_linphone_login));
+		solo.clickOnText(iContext.getString(com.trsmicloud.R.string.account_linphone_login));
 		selectItemInListOnUIThread(14);
-		solo.clickLongOnText(aContext.getString(org.linphone.R.string.pref_disable_account));
+		solo.clickLongOnText(aContext.getString(com.trsmicloud.R.string.pref_disable_account));
 
 		solo.goBack();
 		solo.goBack();
@@ -80,7 +80,7 @@ public class AccountManagement extends SampleTest {
 		solo.waitForActivity("LinphoneActivity", 2000);
 		solo.assertCurrentActivity("Expected Linphone Activity", LinphoneActivity.class);
 
-		solo.clickOnView(solo.getView(org.linphone.R.id.side_menu_button));
+		solo.clickOnView(solo.getView(com.trsmicloud.R.id.side_menu_button));
 		solo.clickOnText("Settings");
 	}
 }

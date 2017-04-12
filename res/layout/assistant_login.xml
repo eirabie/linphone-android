@@ -123,10 +123,11 @@
 
 				<RadioButton
 					android:id="@+id/transport_udp"
-					android:text="@string/pref_transport_udp"
-					android:layout_margin="5dp"
 					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"/>
+					android:layout_height="wrap_content"
+					android:layout_margin="5dp"
+					android:checked="true"
+					android:text="@string/pref_transport_udp" />
 
 				<RadioButton
 					android:id="@+id/transport_tcp"
@@ -137,11 +138,11 @@
 
 				<RadioButton
 					android:id="@+id/transport_tls"
-					android:text="@string/pref_transport_tls"
-					android:layout_margin="5dp"
-					android:checked="true"
 					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"/>
+					android:layout_height="wrap_content"
+					android:layout_margin="5dp"
+					android:checked="false"
+					android:text="@string/pref_transport_tls" />
 			</RadioGroup>
 
 			<Button

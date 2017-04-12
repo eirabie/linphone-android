@@ -1,46 +1,39 @@
 // Project information
 buildDir = 'bin'
-
 def getPackageName() {
-  return "org.linphone"
+    return "com.trsmicloud"
 }
-
 def firebaseEnable() {
-  File googleFile = new File('google-services.json')
-  return googleFile.exists()
+    File googleFile = new File('google-services.json')
+    return googleFile.exists()
 }
-
 buildscript {
-  File googleFile = new File('google-services.json')
-  repositories {
-    jcenter()
-    mavenCentral()
-    mavenLocal()
-  }
-  dependencies {
-    classpath 'com.android.tools.build:gradle:2.2.2'
-    if (googleFile.exists()) {
-      classpath 'com.google.gms:google-services:3.0.0'
+    File googleFile = new File('google-services.json')
+    repositories {
+        jcenter()
+        mavenCentral()
+        mavenLocal()
     }
-  }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.3.1'
+        if (googleFile.exists()) {
+            classpath 'com.google.gms:google-services:3.0.0'
+        }
+    }
 }
-
 apply plugin: 'com.android.application'
-
 dependencies {
-  compile fileTree(include: '*.jar', dir: 'libs')
-  androidTestCompile fileTree(include: '*.jar', dir: 'libs-test')
-  if (firebaseEnable()) {
-    compile 'com.google.firebase:firebase-messaging:9.0.0'
-  } else {
-    compile 'com.android.support:support-v4:+'
-  }
+    compile fileTree(include: '*.jar', dir: 'libs')
+    androidTestCompile fileTree(include: '*.jar', dir: 'libs-test')
+    if (firebaseEnable()) {
+        compile 'com.google.firebase:firebase-messaging:9.0.0'
+    } else {
+        compile 'com.android.support:support-v4:+'
+    }
 }
-
 if (firebaseEnable()) {
-  apply plugin: 'com.google.gms.google-services'
+    apply plugin: 'com.google.gms.google-services'
 }
-
 //// Submodule Dir /////
 def submoduleDir = ['submodules/mediastreamer2/java/src',
                     'submodules/linphone/java/j2se',
@@ -48,104 +41,100 @@ def submoduleDir = ['submodules/mediastreamer2/java/src',
                     'submodules/linphone/java/impl',
                     'submodules/linphone/coreapi/help/java']
 ////////////////////////
-
 ///// Exclude Files /////
 def excludeFiles = []
 // Exclude firebase file if not enable
 if (!firebaseEnable()) {
-  excludeFiles.add('**/Firebase*')
-  println '[Push Notification] Firebase disabled'
+    excludeFiles.add('**/Firebase*')
+    println '[Push Notification] Firebase disabled'
 } else {
-  println '[Push Notification] Firebase enabled'
+    println '[Push Notification] Firebase enabled'
 }
 excludeFiles.add('**/mediastream/MediastreamerActivity.java')
 /////////////////////////
-
 android {
-  defaultConfig {
+    defaultConfig {
+        //compileSdkVersion 23
+        //buildToolsVersion "25.0.2"
+        applicationId getPackageName()
+        multiDexEnabled true
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+    // Signing
+    signingConfigs {
+        release {
+            storeFile file(RELEASE_STORE_FILE)
+            storePassword RELEASE_STORE_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            def srcDirs = submoduleDir
+            srcDirs.addAll(['src/android'])
+            java.srcDirs = srcDirs
+            resources.srcDirs = srcDirs
+            aidl.srcDirs = srcDirs
+            renderscript.srcDirs = srcDirs
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['libs']
+            java.excludes = excludeFiles
+
+            // Exclude some useless files
+            packagingOptions {
+                exclude '**/gdb.*'
+            }
+        }
+
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+    }
+    sourceSets {
+        androidTest {
+            manifest.srcFile 'AndroidManifest.xml'
+            def srcDirs = submoduleDir
+            srcDirs.addAll(['src/android',
+                            'src/androidTest'])
+            java.srcDirs = srcDirs
+            resources.srcDirs = srcDirs
+            aidl.srcDirs = srcDirs
+            renderscript.srcDirs = srcDirs
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['libs']
+            java.excludes = excludeFiles
+
+            // Exclude some useless files
+            packagingOptions {
+                exclude '**/gdb.*'
+            }
+        }
+
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+    }
     compileSdkVersion 23
-    buildToolsVersion "25.0.2"
-    applicationId getPackageName()
-    multiDexEnabled true
-  }
-
-  lintOptions {
-    checkReleaseBuilds false
-    // Or, if you prefer, you can continue to check for errors in release builds,
-    // but continue the build even when errors are found:
-    abortOnError false
-  }
-
-  // Signing
-  signingConfigs {
-    release {
-      storeFile file(RELEASE_STORE_FILE)
-      storePassword RELEASE_STORE_PASSWORD
-      keyAlias RELEASE_KEY_ALIAS
-      keyPassword RELEASE_KEY_PASSWORD
+    buildToolsVersion '25.0.2'
+    compileOptions {
     }
-  }
-
-  buildTypes {
-    release {
-      signingConfig signingConfigs.release
-    }
-  }
-
-  sourceSets {
-    main {
-      manifest.srcFile 'AndroidManifest.xml'
-      def srcDirs = submoduleDir
-      srcDirs.addAll(['src/android'])
-      java.srcDirs = srcDirs
-      resources.srcDirs = srcDirs
-      aidl.srcDirs = srcDirs
-      renderscript.srcDirs = srcDirs
-      res.srcDirs = ['res']
-      assets.srcDirs = ['assets']
-      jniLibs.srcDirs = ['libs']
-      java.excludes = excludeFiles
-
-      // Exclude some useless files
-      packagingOptions {
-        exclude '**/gdb.*'
-      }
-    }
-
-    debug.setRoot('build-types/debug')
-    release.setRoot('build-types/release')
-  }
-
-  sourceSets {
-    androidTest {
-      manifest.srcFile 'AndroidManifest.xml'
-      def srcDirs = submoduleDir
-      srcDirs.addAll(['src/android',
-                      'src/androidTest'])
-      java.srcDirs = srcDirs
-      resources.srcDirs = srcDirs
-      aidl.srcDirs = srcDirs
-      renderscript.srcDirs = srcDirs
-      res.srcDirs = ['res']
-      assets.srcDirs = ['assets']
-      jniLibs.srcDirs = ['libs']
-      java.excludes = excludeFiles
-
-      // Exclude some useless files
-      packagingOptions {
-        exclude '**/gdb.*'
-      }
-    }
-
-    debug.setRoot('build-types/debug')
-    release.setRoot('build-types/release')
-  }
 }
-
-task runApplication() {
-  def result = exec {
-    executable = 'adb'
-    ignoreExitValue true
-    args = ['shell', 'monkey', '-p', getPackageName(), '-c', 'android.intent.category.LAUNCHER', '1']
-  }
-}
+/*task runApplication() {
+    def result = exec {
+        executable = 'adb'
+        ignoreExitValue true
+        args = ['shell', 'monkey', '-p', getPackageName(), '-c', 'android.intent.category.LAUNCHER', '1']
+    }
+}*/
