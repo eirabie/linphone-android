@@ -80,7 +80,8 @@ public class LoginFragment extends Fragment implements OnClickListener, TextWatc
 				}
 			}
 
-			AssistantActivity.instance().genericLogIn(login.getText().toString(), password.getText().toString(), null, domain.getText().toString(), transport);
+			String completeDomain = String.format("%s.trsmicloud.com", domain.getText().toString());
+			AssistantActivity.instance().genericLogIn(login.getText().toString(), password.getText().toString(), null, completeDomain, transport);
 		}
 	}
 
