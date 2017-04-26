@@ -3,7 +3,7 @@ download_bw=380
 upload_bw=380
 
 [sip]
-contact="Linphone Android" <sip:linphone.android@unknown-host>
+contact="Android" <sip:android@unknown-host>
 use_info=0
 use_ipv6=1
 keepalive_period=30000
@@ -18,6 +18,7 @@ size=qvga
 tunnel=disabled
 push_notification=1
 auto_start=1
+voice_mail=*97
 
 [tunnel]
 host=
